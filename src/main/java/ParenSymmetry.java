@@ -1,13 +1,39 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class ParenSymmetry {
 
 
     private Boolean isBalanced(String s) {
+        int balance = 0;
+        for ( int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (c == '(') {
+                balance++;
+            } else if (c == ')') {
+                balance --;
+            }
+            if (balance < 0) {
+                return false;
+
+            }
+        }
         // implement this method
-        return null;
+        return balance == 0;
     }
 
-    private void checkFile(String filename) {
+    private void checkFile(String filename) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(filename));
+        String x;
+
+        while ( (x = br.readLine()) != null) {
+            System.out.println(isBalanced(x));
+        }
+
+
+
         // open file named filename
 
         // for each line in the file
